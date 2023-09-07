@@ -26,13 +26,13 @@ public class MerchantController {
 
 	@GetMapping("/signup")
 	public String loadSignUp(ModelMap map) {
-		merchantDto.setMobile(123456789);
+//		merchantDto.setMobile(123456789);
 		map.put("merchantDto",merchantDto);
 		return "MerchantSignup";
 	}
 
 	@PostMapping("/signup")
-	public String signUp(@Valid MerchantDto merchant, BindingResult result,ModelMap map) {
+	public String signUp(@Valid MerchantDto merchant, BindingResult result) {
 		if (result.hasErrors()) {
 			return "MerchantSignup";
 		}

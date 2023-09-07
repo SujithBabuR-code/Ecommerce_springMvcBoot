@@ -12,7 +12,7 @@
 	<x:form action="/merchant/signup" method="post"
 		modelAttribute="merchantDto">
 		<fieldset>
-			<legend>Signup Here,</legend>
+			<legend>Merchant SignUp,</legend>
 			<table>
 				<tr>
 					<th>Name:</th>

@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -27,8 +28,12 @@ public class MerchantDto {
 	@Email(message = "Email is Not correct format")
 	private String email;
 	private long mobile;
+	@Size(min=8,message = "*Minimum 8 Character")
 	private String password;
+	@NotEmpty(message = "Select atleast One Gender")
 	private String gender;
 	@Past(message = "Date must not be today's or Future's Date")
 	private LocalDate dob;
+	private boolean status;
+	private int otp;
 }

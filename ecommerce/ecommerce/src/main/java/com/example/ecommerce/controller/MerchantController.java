@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.ecommerce.dto.MerchantDto;
+import com.example.ecommerce.service.MerchantService;
 
 import jakarta.validation.Valid;
 
@@ -16,6 +17,9 @@ import jakarta.validation.Valid;
 @RequestMapping("/merchant")
 public class MerchantController {
 
+	@Autowired
+	MerchantService merchantService;
+	
 	@Autowired
 	MerchantDto merchantDto;
 
@@ -37,7 +41,7 @@ public class MerchantController {
 			return "MerchantSignup";
 		}
 		else {
-			return "Merchant";
+			return merchantService.signUp(merchant);
 		}
 
 	}

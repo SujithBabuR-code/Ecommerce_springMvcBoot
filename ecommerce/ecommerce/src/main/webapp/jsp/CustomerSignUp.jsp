@@ -9,6 +9,7 @@
 <link href="../css/signup.css" rel="stylesheet">
 </head>
 <body>
+<h1 style="color: red">${neg}</h1>
 	<x:form action="/customer/signup" method="post"
 		modelAttribute="customerDto">
 		<fieldset>

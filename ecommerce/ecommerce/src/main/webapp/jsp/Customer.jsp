@@ -8,8 +8,9 @@
 <link href="../css/signup.css" rel="stylesheet">
 </head>
 <body>
+<h1 style="color: green">${pos}</h1>
 <h1>Customer page</h1>
-<form action="" style="width: 400px">
+<form action="/customer/signin" method="post" style="width: 400px">
 <fieldset>
 <legend> Customer Login</legend>
 <label for="email">Enter Email:</label>
@@ -20,7 +21,7 @@
 <button type="submit">Log-In</button>
 <button type="reset">Cancel</button>
 <br>
-<h3>New? <a href="customer/signup"> <br>Click here to SignUp</a></h3>
+<h3>New? <a href="/customer/signup"> <br>Click here to SignUp</a></h3>
 </fieldset>
 </form>
 <br>

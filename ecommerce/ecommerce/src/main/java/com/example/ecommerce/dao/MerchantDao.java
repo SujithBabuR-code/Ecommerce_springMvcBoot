@@ -24,4 +24,9 @@ public class MerchantDao {
 		
 	}
 
+	public MerchantDto fetctById(int id) {
+		// TODO Auto-generated method stub
+		return merchantRepository.findById(id).orElse(null);
+	}
+
 }

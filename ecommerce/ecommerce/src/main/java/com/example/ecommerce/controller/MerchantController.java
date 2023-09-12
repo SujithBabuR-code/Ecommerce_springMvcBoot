@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.ecommerce.dto.MerchantDto;
+import com.example.ecommerce.helper.LoginHelper;
 import com.example.ecommerce.service.MerchantService;
 
 import jakarta.validation.Valid;
@@ -55,8 +56,8 @@ public class MerchantController {
 	
 	//sign In method
 	@PostMapping("/signin")
-	public String signIn(@ModelAttribute MerchantDto merchantDto)
+	public String signIn(LoginHelper helper,ModelMap map)
 	{
-		return "done";
+		return merchantService.signIn(helper,map);
 	}
 }

@@ -8,6 +8,7 @@ import org.springframework.ui.ModelMap;
 
 import com.example.ecommerce.dao.CustomerDao;
 import com.example.ecommerce.dto.CustomerDto;
+import com.example.ecommerce.helper.LoginHelper;
 import com.example.ecommerce.helper.MailHelper;
 import com.example.ecommerce.repository.CustomerRepository;
 
@@ -23,21 +24,38 @@ public class CustomerService {
 	CustomerRepository customerRepository;
 
 	public String signUp(CustomerDto customerDto, ModelMap modelMap) {
-		if (customerDao.fetchByEmail(customerDto.getEmail()) == null
-				&& customerDao.fetchByPhone(customerDto.getMobile()) == null) {
+		CustomerDto customerDto1 = customerDao.fetchByEmail(customerDto.getEmail());
+		CustomerDto customerDto2 = customerDao.fetchByPhone(customerDto.getMobile());
+		if (customerDto1 == null && customerDto2 == null) {
 			int otp = new Random().nextInt(10000, 999999);
 			customerDto.setOtp(otp);
 			customerDao.save(customerDto);
-
 			// mail sending
 			mailHelper.sendOtp(customerDto);
 			modelMap.put("id", customerDto.getId());
 			return "VerifyOtp1";
 
 		} else {
-			modelMap.put("neg", "Email or Phone Already Exists");
-			return "CustomerSignUp";
+			if (customerDto1 != null) {
+				if (customerDto1.isStatus()) {
+					modelMap.put("neg", "Email already exists");
+					return "CustomerSignUp";
+				} else {
+					if (customerDto2 != null) {
+						mailHelper.sendOtp(customerDto1);
+						modelMap.put("id", customerDto1.getId());
+						return "VerifyOtp1";
+					} else {
+						modelMap.put("neg", " Same Email with different phone number exists");
+						return "CustomerSignp";
+					}
+				}
+			} else {
+				modelMap.put("neg", "Phone number already exists");
+				return "CustomerSignUp";
+			}
 		}
+
 	}
 
 	public String verifyOtp(int id, int enteredOtp, ModelMap map) {
@@ -51,14 +69,34 @@ public class CustomerService {
 				customerDao.save(customerDto);
 				map.put("pos", "Account Verified Succesfully,You can Login now");
 				return "Customer";
-			}
-			else {
+			} else {
 				map.put("neg", "OTP missMatch Try Again");
 				map.put("id", id);
 				return "VerifyOtp1";
 			}
 		}
 
+	}
+
+	public String signIn(LoginHelper helper, ModelMap modelMap) {
+		CustomerDto customerDto = customerDao.fetchByEmail(helper.getEmail());
+		if (customerDto != null) {
+			if (customerDto.isStatus()) {
+				if (helper.getPassword().equals(customerDto.getPassword())) {
+					return "CustomerHome";
+				} else {
+					modelMap.put("neg", "Password Incorrect");
+					return "Customer";
+				}
+			} else {
+				mailHelper.sendOtp(customerDto);
+				modelMap.put("id", customerDto.getId());
+				return "VerifyOtp1";
+			}
+		} else {
+			modelMap.put("neg", "Email is not existing");
+			return "Customer";
+		}
 	}
 
 }

@@ -9,6 +9,7 @@
 </head>
 <body>
 <h1>Merchant page</h1>
+<h1 id="display">${neg}</h1>
 <h1 style="color: green">${pos}</h1>
 <form action="/merchant/signin" method="post" style="width: 400px;">
 <fieldset>

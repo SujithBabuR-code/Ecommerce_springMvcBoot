@@ -5,6 +5,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
+import com.example.ecommerce.dto.AdminDto;
 import com.example.ecommerce.dto.CustomerDto;
 import com.example.ecommerce.dto.MerchantDto;
 
@@ -25,8 +26,8 @@ public class MailHelper {
 			messageHelper.setTo(merchantDto.getEmail());
 			messageHelper.setFrom("E-Commerce");
 			messageHelper.setSubject("OTP Verification");
-			String body = "<h1 style='color:blue'>Hello " + merchantDto.getName() + ",<br>Your Otp is : "
-					+ merchantDto.getOtp() + "</h1>";
+			String body = "<h1 style='color:blue'>Hello " + merchantDto.getName()
+					+ ",<br>Your Otp for Ecommerce application is: " + merchantDto.getOtp() + "</h1>";
 			messageHelper.setText(body, true);
 			mailSender.send(mimeMessage);
 		} catch (MessagingException e) {
@@ -45,6 +46,25 @@ public class MailHelper {
 			messageHelper.setSubject("OTP Verification");
 			String body = "<h1 style='color:blue'>Hello " + customerDto.getName() + ",<br>Your Otp is : "
 					+ customerDto.getOtp() + "</h1>";
+			messageHelper.setText(body, true);
+			mailSender.send(mimeMessage);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	// for admin otp
+	public void sendOtp(AdminDto adminDto) {
+		MimeMessage mimeMessage = mailSender.createMimeMessage();
+		MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
+
+		try {
+			messageHelper.setTo(adminDto.getEmail());
+			messageHelper.setFrom("E-Commerce");
+			messageHelper.setSubject("OTP Verification");
+			String body = "<h1 style='color:blue'>Hello " +adminDto.getName() + ",<br>Your Otp is : "
+					+ adminDto.getOtp() + "</h1>";
 			messageHelper.setText(body, true);
 			mailSender.send(mimeMessage);
 		} catch (MessagingException e) {

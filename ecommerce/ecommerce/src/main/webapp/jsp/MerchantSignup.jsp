@@ -19,34 +19,34 @@
 				<tr>
 					<th>Name:</th>
 					<th><x:input path="name" /></th>
-					<th><x:errors path="name" /></th>
+					<th><x:errors class="errors" path="name" /></th>
 				</tr>
 				<tr>
 					<th>Mobile:</th>
 					<th><x:input type="tel" path="mobile" pattern="[0-9]{10}" /></th>
-					<th><x:errors path="mobile" /></th>
+					<th><x:errors class="errors" path="mobile" /></th>
 				</tr>
 				<tr>
 					<th>Email:</th>
 					<th><x:input type="email" path="email" /></th>
-					<th><x:errors path="email" /></th>
+					<th><x:errors  class="errors" path="email" /></th>
 				</tr>
 				<tr>
 					<th>Password:</th>
 					<th><x:password path="password" /></th>
-					<th><x:errors path="password" /></th>
+					<th><x:errors class="errors" path="password" /></th>
 				</tr>
 				<tr>
 					<th>Date of Birth:</th>
 					<th><x:input type="date" path="dob" /></th>
-					<th><x:errors path="dob" /></th>
+					<th><x:errors class="errors" path="dob" /></th>
 				</tr>
 				<tr>
 					<th>Gender:</th>
 					<th><x:radiobutton path="gender" value="male"
-							required="required" />Male <x:radiobutton path="gender"
+							 />Male <x:radiobutton path="gender"
 							value="female" />Female</th>
-					<th><x:errors path="gender" /></th>
+					<th><x:errors class="errors" path="gender" /></th>
 				</tr>
 				<tr>
 					<th><button>Sign up</button></th>

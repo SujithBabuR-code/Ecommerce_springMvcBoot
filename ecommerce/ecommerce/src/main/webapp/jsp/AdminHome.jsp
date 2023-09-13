@@ -4,13 +4,15 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Customer Home page</title>
 <link href="../css/homepage.css" rel="stylesheet">
+<title>Admin home page</title>
 </head>
-<h1>Customer Home Page</h1>
+<body>
+<h1>Admin Home Page</h1>
 <div>
-<a href=""><button>View Items List</button></a>
-<a href=""><button>View All order</button></a>
-<a href=""><button>Edit Personal Details</button></a>
+<a href=""><button>Approve Items</button></a>
+<a href=""><button>View Merchant</button></a>
+<a href=""><button>View Customer</button></a>
 </div>
+</body>
 </html>

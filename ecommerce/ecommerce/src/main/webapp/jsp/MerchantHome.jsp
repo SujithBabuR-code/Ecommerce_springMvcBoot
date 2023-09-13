@@ -4,9 +4,15 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Merchant home page</title>
+<link href="../css/homepage.css" rel="stylesheet">
 </head>
 <body>
-<h1>This is merchant home page</h1>
+<h1>Merchant Home Page</h1>
+<div>
+<a href=""><button>Add Item</button></a>
+<a href=""><button>View Items</button></a>
+
+</div>
 </body>
 </html>

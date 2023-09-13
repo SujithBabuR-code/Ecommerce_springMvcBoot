@@ -9,7 +9,9 @@
 </head>
 <body>
 <h1>Admin page</h1>
-<form action="">
+<h1 id="display">${neg}</h1>
+<h1 style="color: green">${pos}</h1>
+<form action="/admin/login" method="post">
 <fieldset>
 <legend>Login</legend>
 <input type="email" name="email"  placeholder="enter Email"><br>

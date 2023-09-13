@@ -1,0 +1,40 @@
+/* Style the buttons */
+h1 {
+	margin-top: 30px;
+}
+
+button {
+	padding: 10px 20px;
+	background-color: #007bff;
+	/* Blue background color */
+	color: #fff;
+	/* White text color */
+	border: none;
+	border-radius: 5px;
+	text-decoration: none;
+	font-size: 16px;
+	margin: 5px;
+	margin-top: 3rem;
+	cursor: pointer;
+
+}
+
+/* Change button color on hover */
+button:hover {
+	background-color: #0056b3;
+	/* Darker blue on hover */
+}
+
+/* Remove default link underline */
+a {
+	text-decoration: none;
+}
+
+/* Center the buttons */
+div {
+	display: flex;
+	justify-content: center;
+	width: 500px;
+	height: 300px;
+	/* Center vertically on the page */
+}

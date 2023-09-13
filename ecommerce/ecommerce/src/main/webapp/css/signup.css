@@ -40,6 +40,10 @@
  	border: 1px solid #ccc;
  	border-radius: 3px;
  }
+ .errors{
+	 color: red;
+	 margin: 10px;
+ }
 .validation{
 	color: red;
 	margin-left: 5px;

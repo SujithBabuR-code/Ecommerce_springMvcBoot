@@ -94,7 +94,7 @@ public class CustomerService {
 				return "VerifyOtp1";
 			}
 		} else {
-			modelMap.put("neg", "Email is not existing");
+			modelMap.put("neg", "Email doesn't  exist");
 			return "Customer";
 		}
 	}

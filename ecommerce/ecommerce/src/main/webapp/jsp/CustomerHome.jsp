@@ -9,8 +9,9 @@
 </head>
 <h1>Customer Home Page</h1>
 <div>
-<a href=""><button>View Items List</button></a>
-<a href=""><button>View All order</button></a>
-<a href=""><button>Edit Personal Details</button></a>
+<a href="/customer/view-products"><button>View Product List</button></a>
+<a href=""><button>View Orders</button></a>
+<a href=""><button>Edit Details</button></a>
+<a href="/logout"><button>Log Out </button></a>
 </div>
 </html>

@@ -10,9 +10,10 @@
 <body>
 <h1>Admin Home Page</h1>
 <div>
-<a href=""><button>Approve Items</button></a>
+<a href="/admin/approve-items"><button>Approve Items</button></a>
 <a href=""><button>View Merchant</button></a>
 <a href=""><button>View Customer</button></a>
+<a href="/logout"><button>Log Out </button></a>
 </div>
 </body>
 </html>

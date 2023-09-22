@@ -1,16 +1,24 @@
 package com.example.ecommerce.service;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.ecommerce.dao.MerchantDao;
 import com.example.ecommerce.dto.MerchantDto;
+import com.example.ecommerce.dto.ProductDto;
 import com.example.ecommerce.helper.LoginHelper;
 import com.example.ecommerce.helper.MailHelper;
 import com.example.ecommerce.repository.MerchantRepository;
+
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 
 @Service
 public class MerchantService {
@@ -77,7 +85,7 @@ public class MerchantService {
 		}
 	}
 
-	public String signIn(LoginHelper helper, ModelMap modelMap) {
+	public String signIn(LoginHelper helper, ModelMap modelMap, HttpSession session) {
 		MerchantDto merchantDto = merchantDao.fetchByEmail(helper.getEmail());
 		if(merchantDto!=null)
 		{
@@ -85,6 +93,8 @@ public class MerchantService {
 			{
 				if(helper.getPassword().equals(merchantDto.getPassword()))
 				{
+					session.setMaxInactiveInterval(150);
+					session.setAttribute("merchantDto", merchantDto);
 					return "MerchantHome";
 				}
 				else {
@@ -104,5 +114,27 @@ public class MerchantService {
 			return "Merchant";
 		}
 
+	}
+
+	public String addProduct(ProductDto productDto, MultipartFile pic, ModelMap map, MerchantDto merchantDto) throws IOException {
+		// TODO Auto-generated method stub
+		byte[] picture=new byte[pic.getInputStream().available()];
+		pic.getInputStream().read(picture);
+		
+		productDto.setPicture(picture);
+		List<ProductDto> list=merchantDto.getProductDtos();
+		
+		if(list == null)
+		{
+			list= new ArrayList<ProductDto>();
+		}
+		
+		list.add(productDto);
+		merchantDto.setProductDtos(list);
+		
+		merchantDao.save(merchantDto);
+		
+		map.put("pos", "Product Added Sucessfully");
+		return "MerchantHome";
 	}
 }

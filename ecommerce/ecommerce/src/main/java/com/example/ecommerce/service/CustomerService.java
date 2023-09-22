@@ -12,6 +12,8 @@ import com.example.ecommerce.helper.LoginHelper;
 import com.example.ecommerce.helper.MailHelper;
 import com.example.ecommerce.repository.CustomerRepository;
 
+import jakarta.servlet.http.HttpSession;
+
 @Service
 public class CustomerService {
 	@Autowired
@@ -78,11 +80,13 @@ public class CustomerService {
 
 	}
 
-	public String signIn(LoginHelper helper, ModelMap modelMap) {
+	public String signIn(LoginHelper helper, ModelMap modelMap, HttpSession session) {
 		CustomerDto customerDto = customerDao.fetchByEmail(helper.getEmail());
 		if (customerDto != null) {
 			if (customerDto.isStatus()) {
 				if (helper.getPassword().equals(customerDto.getPassword())) {
+					session.setMaxInactiveInterval(150);
+					session.setAttribute("customerDto", customerDto);
 					return "CustomerHome";
 				} else {
 					modelMap.put("neg", "Password Incorrect");
@@ -95,6 +99,17 @@ public class CustomerService {
 			}
 		} else {
 			modelMap.put("neg", "Email doesn't  exist");
+			return "Customer";
+		}
+	}
+
+	public String viewProducts(HttpSession httpSession,ModelMap map) {
+		// TODO Auto-generated method stub
+		CustomerDto customerDto = (CustomerDto) httpSession.getAttribute("customerDto");
+		if (customerDto != null) {
+			return "ViewProducts";
+		} else {
+			map.put("neg", "session ended please logIn again");
 			return "Customer";
 		}
 	}

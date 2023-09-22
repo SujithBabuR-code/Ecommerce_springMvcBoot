@@ -12,7 +12,11 @@
  	width: 600px;
  	margin: 0 auto;
  }
-
+.errors-mvc{
+	color:red;
+	font-weight: bolder;
+	margin-left: 2rem;
+}
  fieldset {
  	border: 1px solid #ccc;
  	padding: 20px;

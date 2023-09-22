@@ -13,6 +13,7 @@ import com.example.ecommerce.dto.CustomerDto;
 import com.example.ecommerce.helper.LoginHelper;
 import com.example.ecommerce.service.CustomerService;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 @Controller
@@ -53,9 +54,15 @@ public class CustomerController {
 	//sign in ()
 	
 	@PostMapping("/signin")
-	public String signIn(LoginHelper helper,ModelMap map)
+	public String signIn(LoginHelper helper,ModelMap map,HttpSession session)
 	{
-		return customerService.signIn(helper,map);
+		return customerService.signIn(helper,map,session);
+	}
+	
+	@GetMapping("/view-products")
+	public String viewProducts(HttpSession httpSession,ModelMap map)
+	{
+		return customerService.viewProducts(httpSession,map);
 	}
 
 }

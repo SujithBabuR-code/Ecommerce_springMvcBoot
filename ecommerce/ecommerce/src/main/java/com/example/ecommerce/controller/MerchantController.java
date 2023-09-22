@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,7 +29,7 @@ public class MerchantController {
 
 	@Autowired
 	MerchantDto merchantDto;
-	
+
 	@Autowired
 	ProductDto productDto;
 
@@ -61,14 +60,14 @@ public class MerchantController {
 	public String verifyOtp(@RequestParam int enteredOtp, int id, ModelMap modelMap) {
 		return merchantService.verifyOtp(id, enteredOtp, modelMap);
 	}
-	
+
 	//sign In method
 	@PostMapping("/signin")
 	public String signIn(LoginHelper helper,ModelMap map,HttpSession session)
 	{
 		return merchantService.signIn(helper,map,session);
 	}
-	
+
 	@GetMapping("/productpage")
 	public String addProductPage(ModelMap modelMap,HttpSession session)
 	{
@@ -82,16 +81,15 @@ public class MerchantController {
 			modelMap.put("neg", "Invalid Session please Login Again");
 			return "Main";
 		}
-		
+
 	}
 	@GetMapping("/viewItems")
 	public String viewProduct()
 	{
 		return "";
 	}
-	
 //	addproduct page from request
-	
+
 	@PostMapping("/add-product")
 	public String addProduct(@Valid ProductDto productDto,BindingResult result,@RequestParam MultipartFile  pic,
 			ModelMap map, HttpSession session)throws IOException

@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.ecommerce.dto.AdminDto;
 import com.example.ecommerce.helper.LoginHelper;
 import com.example.ecommerce.service.AdminService;
 

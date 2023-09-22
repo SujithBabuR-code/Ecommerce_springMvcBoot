@@ -18,7 +18,7 @@ import com.example.ecommerce.helper.MailHelper;
 import com.example.ecommerce.repository.MerchantRepository;
 
 import jakarta.servlet.http.HttpSession;
-import jakarta.validation.Valid;
+
 
 @Service
 public class MerchantService {
@@ -55,7 +55,7 @@ public class MerchantService {
 						return "VerifyOtp";
 					} else {
 						modelMap.put("neg", " Same Email with different phone number exists");
-						return "MerchantSignp";
+						return "MerchantSignUp";
 					}
 				}
 			} else {
@@ -75,10 +75,10 @@ public class MerchantService {
 			if (merchantDto.getOtp() == enteredOtp) {
 				merchantDto.setStatus(true);
 				merchantDao.save(merchantDto);
-				map.put("pos", "Account Verifiyed SuccessFully ,You can login Now");
+				map.put("pos", "Account Verified SuccessFully ,You can login Now");
 				return "Merchant";
 			} else {
-				map.put("neg", "OTP missmatch try Again");
+				map.put("neg", "OTP miss match try Again");
 				map.put("id", id);
 				return "VerifyOtp";
 			}
@@ -108,7 +108,6 @@ public class MerchantService {
 					return "VerifyOtp";
 				}
 			}
-				
 		else {
 			modelMap.put("neg", "email is not existing");
 			return "Merchant";
@@ -117,23 +116,20 @@ public class MerchantService {
 	}
 
 	public String addProduct(ProductDto productDto, MultipartFile pic, ModelMap map, MerchantDto merchantDto) throws IOException {
-		// TODO Auto-generated method stub
+		
 		byte[] picture=new byte[pic.getInputStream().available()];
 		pic.getInputStream().read(picture);
-		
+
 		productDto.setPicture(picture);
 		List<ProductDto> list=merchantDto.getProductDtos();
-		
+
 		if(list == null)
 		{
 			list= new ArrayList<ProductDto>();
 		}
-		
 		list.add(productDto);
 		merchantDto.setProductDtos(list);
-		
 		merchantDao.save(merchantDto);
-		
 		map.put("pos", "Product Added Sucessfully");
 		return "MerchantHome";
 	}

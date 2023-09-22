@@ -10,10 +10,9 @@ import com.example.ecommerce.dao.AdminDao;
 import com.example.ecommerce.dto.AdminDto;
 import com.example.ecommerce.helper.LoginHelper;
 import com.example.ecommerce.helper.MailHelper;
-import com.example.ecommerce.repository.AdminRepository;
 
-import ch.qos.logback.core.model.Model;
 import jakarta.servlet.http.HttpSession;
+
 
 @Service
 public class AdminService {
@@ -52,7 +51,6 @@ public class AdminService {
 	}
 
 	public String verifyOtp(int id, int enteredOtp,ModelMap map,HttpSession session) {
-		// TODO Auto-generated method stub
 		AdminDto adminDto=adminDao.fetchById(id);
 		if(adminDto.getOtp()==enteredOtp)
 		{
@@ -67,14 +65,12 @@ public class AdminService {
 	}
 
 	public String logOut(HttpSession httpSession) {
-		// TODO Auto-generated method stub
 		//AdminDto adminDto=(AdminDto) httpSession.getAttribute("adminDto");
 		httpSession.removeAttribute("adminDto");
 		return "Admin";
 	}
 
 	public String approveItems(HttpSession session,ModelMap map) {
-		// TODO Auto-generated method stub
 		AdminDto adminDto=(AdminDto) session.getAttribute("adminDto");
 		if(adminDto!=null)
 		{

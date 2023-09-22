@@ -7,5 +7,6 @@
         "signin",
         "Sucessfully",
         "verifyotp"
-    ]
+    ],
+    "java.configuration.updateBuildConfiguration": "interactive"
 }
